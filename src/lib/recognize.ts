@@ -1,5 +1,6 @@
 // 前端识别流程：压缩图片 → base64 → POST /api/recognize → 食材列表
 import type { IngredientTag } from '@/types/types';
+import { apiUrl } from '@/lib/api';
 
 const MAX_SIDE = 1024; // 压缩到最长边 1024px，控制 base64 体积
 const JPEG_QUALITY = 0.8;
@@ -34,7 +35,7 @@ export function fileToCompressedDataUrl(file: File): Promise<string> {
 export async function recognizeIngredients(imageDataUrl: string): Promise<IngredientTag[]> {
   let res: Response;
   try {
-    res = await fetch('/api/recognize', {
+    res = await fetch(apiUrl('/api/recognize'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ image: imageDataUrl }),

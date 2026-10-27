@@ -4,6 +4,8 @@ import path from 'node:path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pages 部署在子路径 /today-eats/；本地与 Vercel 为根路径
+  base: process.env.VITE_BASE_PATH || '/',
   plugins: [react()],
   resolve: {
     alias: {
