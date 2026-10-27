@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ 默认主题（米白 · 图一）============ */
+@layer base {
+  :root {
+    --background: 36 30% 97%;
+    --foreground: 28 12% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 28 12% 18%;
+    --primary: 26 44% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 32 22% 94%;
+    --secondary-foreground: 28 12% 18%;
+    --muted: 32 18% 94%;
+    --muted-foreground: 28 8% 45%;
+    --accent: 26 44% 38%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 32 14% 88%;
+    --input: 32 14% 88%;
+    --ring: 26 44% 38%;
+    --radius: 0.75rem;
+  }
+}
+
+/* ============ 六套主题 ============ */
+html[data-theme='beige'] {
+  --theme-accent: #8B5C36;
+  --theme-bg: linear-gradient(160deg, #FDFBF6 0%, #F7F2EA 30%, #EFE7DB 62%, #E5D8C6 100%);
+  --primary: 26 44% 38%;
+  --ring: 26 44% 38%;
+  --accent: 26 44% 38%;
+}
+
+html[data-theme='ocean'] {
+  --theme-accent: #21A7CF;
+  --theme-bg: linear-gradient(160deg, #FFE28D 0%, #9BD8E4 26%, #2BAACD 56%, #7FD8E8 82%, #D4FEFA 100%);
+  --primary: 198 72% 47%;
+  --ring: 198 72% 47%;
+  --accent: 198 72% 47%;
+}
+
+html[data-theme='sunset'] {
+  --theme-accent: #13193D;
+  --theme-bg: linear-gradient(160deg, #FFE28D 0%, #FAC1A8 38%, #9A8296 66%, #13193D 100%);
+  --primary: 231 24% 20%;
+  --ring: 231 24% 20%;
+  --accent: 231 24% 20%;
+}
+
+html[data-theme='mint'] {
+  --theme-accent: #007E79;
+  --theme-bg: linear-gradient(160deg, #F9D2E4 0%, #B9E3D8 28%, #67C9B5 56%, #2FA795 80%, #007E79 100%);
+  --primary: 178 100% 25%;
+  --ring: 178 100% 25%;
+  --accent: 178 100% 25%;
+}
+
+html[data-theme='indigo'] {
+  --theme-accent: #262277;
+  --theme-bg: linear-gradient(160deg, #FFCEE3 0%, #C6D2EE 28%, #678EC9 56%, #3A4FA8 80%, #262277 100%);
+  --primary: 243 56% 30%;
+  --ring: 243 56% 30%;
+  --accent: 243 56% 30%;
+}
+
+html[data-theme='dream'] {
+  --theme-accent: #391A77;
+  --theme-bg: linear-gradient(160deg, #FEDFCB 0%, #D6BDE0 28%, #8B5BC0 54%, #4F2A92 78%, #391A77 100%);
+  --primary: 260 62% 29%;
+  --ring: 260 62% 29%;
+  --accent: 260 62% 29%;
+}
+
+* {
+  @apply border-border;
+}
+
+html, body, #root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans SC', system-ui, sans-serif;
+  background-color: #F7F2EA;
+  background-image: var(--theme-bg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  transition: background-image 0.5s ease;
+}
+
+/* 雾面（磨砂颗粒）质感 */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fadeInUp 0.4s ease-out; }
