@@ -1,5 +1,5 @@
 import type { RecipePlan } from '../types/types';
-import { apiUrl } from './api';
+import { apiUrl, apiHeaders } from './api';
 
 export interface GeneratePayload {
   ingredients: string[];
@@ -12,7 +12,7 @@ export interface GeneratePayload {
 export async function generateRecipes(payload: GeneratePayload): Promise<RecipePlan[]> {
   const resp = await fetch(apiUrl('/api/generate-recipes'), {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: apiHeaders(),
     body: JSON.stringify(payload),
   });
 
